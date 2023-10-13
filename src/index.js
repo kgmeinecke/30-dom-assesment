@@ -326,7 +326,7 @@ function filterHandler() {
   
     selectElement.addEventListener('change', (event) => {
       const selectedOption = selectElement.options[selectElement.selectedIndex]
-      console.log(selectedOption.value)
+      //console.log(selectedOption.value)
       const value = parseInt(selectedOption.value);
       
         if (value == 0) {
@@ -382,7 +382,8 @@ function deleteContact(id) {
   
   if(contacts.length > 0) {
     contacts = contacts.filter(contact => contact.id !== id);
-    render(contacts);
+    //loadCities(contacts);
+    //render(contacts);
   }
   //filterHandler();  //This makes the test happy but breaks the code
   //loadCities()
@@ -398,8 +399,29 @@ function deleteButtonHandler() {
   const buttons = document.querySelectorAll('.deleteBtn');
 
   buttons.forEach((btn) => btn.addEventListener('click', (event) => {
+    
+    const selectElement = document.querySelector('#filterOptions');
+    const selectedOption = selectElement.options[selectElement.selectedIndex]
+    const text = selectedOption.innerText;
+    const value = parseInt(selectedOption.value);
+    console.log(text)
+    //console.log(value)
+ 
     const card = parseInt(event.target.parentElement.getAttribute('data-id'));
     deleteContact(card);
+    const containsValue = contacts.some(contact => contact.address.city === text);
+    console.log(containsValue)
+    // testing
+    if (!containsValue) {
+      render(contacts)
+      loadCities(contacts)
+    }
+    else {
+      let cityList = filterByCity(text);
+      console.log(cityList)
+      render(cityList);
+    }
+    // testing
     //render(contacts)
   }));
 }

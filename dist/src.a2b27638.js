@@ -383,6 +383,7 @@ function render(filteredContacts) {
 
   //loadCities(contacts);
   //filterHandler();  // stops filtering after a couple 
+  //loadCities(contacts);
   deleteButtonHandler();
 }
 
@@ -413,11 +414,13 @@ function filterHandler() {
     var value = parseInt(selectedOption.value);
     if (value == 0) {
       render(contacts);
+      //deleteButtonHandler()
     } else {
       var city = selectedOption.innerText;
       var cityList = filterByCity(city);
       render(cityList);
       //loadCities(contacts)
+      //deleteButtonHandler()
     }
   });
 }
@@ -465,8 +468,8 @@ function deleteContact(id) {
     });
     render(contacts);
   }
-  //render(contacts);
   //filterHandler();  //This makes the test happy but breaks the code
+  //loadCities()
 }
 
 /*
@@ -481,6 +484,7 @@ function deleteButtonHandler() {
     return btn.addEventListener('click', function (event) {
       var card = parseInt(event.target.parentElement.getAttribute('data-id'));
       deleteContact(card);
+      //render(contacts)
     });
   });
 }
@@ -535,7 +539,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49473" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58475" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
