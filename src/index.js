@@ -298,6 +298,7 @@ function render(filteredContacts) {
 
   //loadCities(contacts);
   //filterHandler();  // stops filtering after a couple 
+  //loadCities(contacts);
   deleteButtonHandler();
 }
 
@@ -330,12 +331,14 @@ function filterHandler() {
       
         if (value == 0) {
           render(contacts);
+          //deleteButtonHandler()
         }
         else {
           const city = selectedOption.innerText;
           let cityList = filterByCity(city);
           render(cityList);
           //loadCities(contacts)
+          //deleteButtonHandler()
         }
     });
 }
@@ -381,8 +384,8 @@ function deleteContact(id) {
     contacts = contacts.filter(contact => contact.id !== id);
     render(contacts);
   }
-  //render(contacts);
   //filterHandler();  //This makes the test happy but breaks the code
+  //loadCities()
 }
 
 /*
@@ -397,6 +400,7 @@ function deleteButtonHandler() {
   buttons.forEach((btn) => btn.addEventListener('click', (event) => {
     const card = parseInt(event.target.parentElement.getAttribute('data-id'));
     deleteContact(card);
+    //render(contacts)
   }));
 }
 
